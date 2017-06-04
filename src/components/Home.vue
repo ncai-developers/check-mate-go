@@ -20,7 +20,9 @@
       </div>
     </div>
 
-
+    <q-modal ref="loginModal">
+      <my-login @login="login"></my-login>
+    </q-modal>
     <q-modal class="maximized" ref="productModal">
       <my-product :product="product"></my-product>
     </q-modal>
@@ -34,7 +36,14 @@
 import { Loading, Toast } from 'quasar';
 
 export default {
+  mounted(){
+    this.$refs.loginModal.open();
+  },
   methods: {
+    login(){
+      this.$refs.loginModal.close();
+      this.$refs.barcodeEl.focus();
+    },
     process( code, pin ){
       let modalProm;
       if( code.length > 6 ){

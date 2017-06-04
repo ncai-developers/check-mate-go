@@ -9,6 +9,7 @@ require(`quasar/dist/quasar.${__THEME}.css`);
 import Vue from 'vue';
 import Quasar from 'quasar';
 import { router, load } from './router';
+import { store } from './store';
 
 Vue.use(Quasar); // Install Quasar Framework
 
@@ -19,12 +20,14 @@ Vue.directive('focused', {
 });
 Vue.component('my-balance', load('Balance'));
 Vue.component('my-product', load('Product'));
+Vue.component('my-login', load('Login'));
 
 Quasar.start(() => {
   /* eslint-disable no-new */
   window.app = new Vue({
     el: '#q-app',
     router,
+    store,
     render: h => h(require('./App'))
   });
 });
